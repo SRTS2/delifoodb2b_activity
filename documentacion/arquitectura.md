@@ -1,23 +1,30 @@
-### 2. Archivo: `/documentacion/branching.md`
+# Arquitectura del Sistema - MVP Delifood
 
-Este archivo explica las reglas que seguirá tu equipo en Git.
+* **Backend:** Node.js con Express. Justificación: Permite un desarrollo ágil, sintaxis minimalista y manejo nativo de objetos JSON para la API REST.
+* **Frontend:** Vanilla JS (HTML/CSS/JS) con Tailwind CSS vía CDN. Justificación: Cero configuración inicial. Evita la complejidad de compilar o empaquetar código, facilitando el desarrollo rápido de las vistas (Login, Cliente, Administrador).
+* **Persistencia:** Memoria RAM (Estructuras de datos en el servidor). Justificación: Elimina la fricción de configurar y conectar motores de bases de datos, permitiendo enfocarse en la lógica de negocio y la comunicación cliente-servidor.
 
-```markdown
-# Estrategia de Control de Versiones
+## 2. Diagrama de Arquitectura
 
-Para este MVP, utilizaremos una estrategia basada en **GitHub Flow**, adaptada para mantener la simplicidad y la velocidad durante el taller.
+El sistema sigue una arquitectura Cliente-Servidor separada y comunicada mediante HTTP.
 
-## 1. Ramas Principales
-* `main`: Es la rama principal y está protegida. Contiene el código de producción funcional y estable. Nunca se sube código directamente a esta rama (No commits directos).
-
-## 2. Ramas de Características (Feature Branches)
-Cada miembro del equipo trabajará en ramas temporales y de corta duración, creadas a partir de `main`. La nomenclatura será:
-* `feat-frontend`: Para todos los cambios relacionados con la interfaz de usuario.
-* `feat-backend`: Para la creación de la API y la persistencia en memoria.
-
-## 3. Flujo de Trabajo
-1.  **Clonar y crear rama:** Un desarrollador se posiciona en `main`, actualiza (`git pull`) y crea su rama de trabajo (`git checkout -b feat-backend`).
-2.  **Desarrollo local:** Realiza los commits necesarios (`git add .`, `git commit -m "feat: implementa endpoint de login"`).
-3.  **Subir rama:** Sube la rama al repositorio remoto (`git push origin feat-backend`).
-4.  **Pull Request (PR):** Abre un Pull Request en GitHub hacia la rama `main`.
-5.  **Revisión e Integración:** Otro miembro del equipo revisa el código. Si no hay conflictos, se aprueba y se hace el *merge* a `main`.
+```mermaid
+sequenceDiagram
+    participant F as Frontend (Cliente/Admin)
+    participant B as Backend (API Express)
+    participant M as Memoria (Arrays RAM)
+    
+    F->>B: POST /api/login (Credenciales)
+    B-->>F: Respuesta (Rol: Cliente o Admin)
+    
+    F->>B: POST /api/pedidos (Crear pedido)
+    B->>M: Guarda pedido en array
+    B-->>F: Confirmación de creación
+    
+    F->>B: GET /api/pedidos (Listar)
+    M-->>B: Retorna datos
+    B-->>F: JSON con pedidos
+    
+    F->>B: PUT /api/pedidos/:id (Cambiar estado)
+    B->>M: Actualiza estado en array
+    B-->>F: Confirmación de actualización
