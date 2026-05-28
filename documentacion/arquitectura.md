@@ -1,5 +1,9 @@
 # Arquitectura del Sistema - MVP Delifood
 
+## 1. Selección de Tecnologías
+
+Para cumplir con el desarrollo del MVP en el tiempo establecido (4 horas), el equipo ha seleccionado el siguiente stack tecnológico:
+
 * **Backend:** Node.js con Express. Justificación: Permite un desarrollo ágil, sintaxis minimalista y manejo nativo de objetos JSON para la API REST.
 * **Frontend:** Vanilla JS (HTML/CSS/JS) con Tailwind CSS vía CDN. Justificación: Cero configuración inicial. Evita la complejidad de compilar o empaquetar código, facilitando el desarrollo rápido de las vistas (Login, Cliente, Administrador).
 * **Persistencia:** Memoria RAM (Estructuras de datos en el servidor). Justificación: Elimina la fricción de configurar y conectar motores de bases de datos, permitiendo enfocarse en la lógica de negocio y la comunicación cliente-servidor.

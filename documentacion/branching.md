@@ -1,6 +1,3 @@
-Este archivo explica las reglas que seguirá tu equipo en Git.
-
-```markdown
 # Estrategia de Control de Versiones
 
 Para este MVP, utilizaremos una estrategia basada en **GitHub Flow**, adaptada para mantener la simplicidad y la velocidad durante el taller.

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delifood MVP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans text-gray-800">
+
+    <div class="max-w-4xl mx-auto py-10 px-4">
+        <h1 class="text-3xl font-bold text-center text-orange-600 mb-8">Delifood - Gestión de Pedidos</h1>
+
+        <div id="vista-login" class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
+            <h2 class="text-xl font-semibold mb-4">Iniciar Sesión</h2>
+            <input type="text" id="username" placeholder="Usuario (Ej: cliente1 o admin1)" class="w-full p-2 mb-4 border rounded">
+            <input type="password" id="password" placeholder="Contraseña (123 o admin)" class="w-full p-2 mb-4 border rounded">
+            <button onclick="login()" class="w-full bg-orange-500 text-white p-2 rounded hover:bg-orange-600">Entrar</button>
+            <p id="login-error" class="text-red-500 mt-2 hidden">Credenciales inválidas</p>
+        </div>
+
+        <div id="vista-cliente" class="hidden">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold">Panel de Cliente</h2>
+                <button onclick="logout()" class="text-red-500 underline">Cerrar sesión</button>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                <h3 class="text-lg font-medium mb-3">Nuevo Pedido</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <input type="text" id="restaurante" placeholder="Nombre Restaurante" class="p-2 border rounded">
+                    <input type="text" id="producto" placeholder="Producto" class="p-2 border rounded">
+                    <input type="number" id="cantidad" placeholder="Cantidad" class="p-2 border rounded">
+                </div>
+                <button onclick="crearPedido()" class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Crear Pedido</button>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-lg font-medium mb-3">Mis Pedidos</h3>
+                <ul id="lista-pedidos-cliente" class="divide-y divide-gray-200"></ul>
+            </div>
+        </div>
+
+        <div id="vista-admin" class="hidden">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold">Panel de Administración</h2>
+                <button onclick="logout()" class="text-red-500 underline">Cerrar sesión</button>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-lg font-medium mb-3">Todos los Pedidos</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-left">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="p-2 border-b">ID</th>
+                                <th class="p-2 border-b">Cliente</th>
+                                <th class="p-2 border-b">Restaurante</th>
+                                <th class="p-2 border-b">Producto</th>
+                                <th class="p-2 border-b">Cant.</th>
+                                <th class="p-2 border-b">Estado</th>
+                                <th class="p-2 border-b">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-pedidos-admin"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
